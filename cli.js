@@ -22,7 +22,7 @@ if (argv.version || argv.v) {
   process.exit(1);
 } else if (!accessToken) {
   console.log('missing access token, try `export MAPBOX_ACCESS_TOKEN=...`');
-  process.exit(1);
+  // process.exit(1);
 }
 
 try {
@@ -32,6 +32,7 @@ try {
 }
 
 argv.basemap = argv.basemap || argv.base || argv.map || 'dark';
+argv.projection = argv.projection || 'EPSG:3857';
 
 
 var MBView = require('./mbview');
@@ -43,7 +44,8 @@ var params = {
   zoom: 12,
   quiet: argv.q || argv.quiet,
   basemap: argv.basemap,
-  accessToken: accessToken
+  accessToken: accessToken,
+  projection: argv.projection
 };
 
 MBView.serve(params, function (err, config) {

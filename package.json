@@ -10,7 +10,8 @@
     "lint": "eslint *.js test/",
     "pretest": "npm run lint",
     "test": "tape test/*.test.js",
-    "start": "node cli.js"
+    "start": "node cli.js",
+    "pkg": "pkg . --out-path=dist/"
   },
   "keywords": [
     "localhost",
@@ -21,6 +22,7 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^2.13.1",
+    "pkg": "^4.3.0",
     "supertest": "^1.2.0",
     "tape": "^4.5.1"
   },
@@ -40,5 +42,17 @@
   "bugs": {
     "url": "https://github.com/mapbox/mbview/issues"
   },
-  "homepage": "https://github.com/mapbox/mbview#readme"
+  "homepage": "https://github.com/mapbox/mbview#readme",
+  "pkg": {
+    "targets": [
+      "node6-macos-x64",
+      "node6-linux-x64",
+      "node6-win-x64"
+    ],
+    "assets": [
+      "node_modules/mbtiles/lib/schema.sql",
+      "views/*",
+      "public/*"
+    ]
+  }
 }
